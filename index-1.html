@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kids Barber — Barbearia Infantil em Moema, São Paulo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Bangers&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --vermelho: #E8332A;
+    --vermelho-escuro: #B4231D;
+    --amarelo: #FFC629;
+    --azul: #14213D;
+    --creme: #FFFDF7;
+    --verde: #2BB673;
+    --tinta: #1A1A1A;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Baloo 2', sans-serif;
+    background:var(--creme);
+    color:var(--tinta);
+    overflow-x:hidden;
+  }
+  h1,h2,h3, .burst-text{
+    font-family:'Bangers', cursive;
+    letter-spacing:1px;
+  }
+  a{text-decoration:none; color:inherit;}
+  img{max-width:100%; display:block;}
+  .halftone{
+    background-image: radial-gradient(circle, rgba(0,0,0,0.35) 1.6px, transparent 1.6px);
+    background-size: 12px 12px;
+  }
+  .panel-border{
+    border: 4px solid var(--tinta);
+    box-shadow: 6px 6px 0 var(--tinta);
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position: sticky; top:0; z-index:50;
+    background: var(--vermelho);
+    border-bottom: 4px solid var(--tinta);
+  }
+  .nav-wrap{
+    max-width:1180px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 10px 20px;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    color:var(--creme);
+    font-size: 1.6rem;
+  }
+  .logo span{color:var(--amarelo);}
+  nav ul{
+    list-style:none; display:flex; gap:22px;
+  }
+  nav a{
+    color:var(--creme); font-weight:700; font-size:0.98rem;
+    padding:6px 2px; border-bottom:3px solid transparent;
+    transition: border-color .2s;
+  }
+  nav a:hover{border-color:var(--amarelo);}
+  .btn-zap{
+    background:var(--verde); color:var(--creme)!important;
+    font-weight:800; padding:10px 18px; border-radius:30px;
+    border:3px solid var(--tinta); box-shadow:3px 3px 0 var(--tinta);
+    font-size:0.95rem; white-space:nowrap;
+    transition: transform .15s;
+  }
+  .btn-zap:hover{transform:translate(-2px,-2px); box-shadow:5px 5px 0 var(--tinta);}
+  .nav-toggle{display:none; font-size:1.8rem; color:var(--creme); background:none; border:none; cursor:pointer;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height: 92vh;
+    display:flex; align-items:center;
+    background: linear-gradient(180deg, rgba(20,33,61,.55), rgba(20,33,61,.75)), url('images/fachada.jpg') center/cover no-repeat;
+  }
+  .hero::after{
+    content:""; position:absolute; inset:0;
+    background-image: radial-gradient(circle, rgba(255,198,41,0.25) 2px, transparent 2px);
+    background-size: 22px 22px;
+    pointer-events:none;
+  }
+  .hero-inner{
+    position:relative; z-index:2;
+    max-width:1180px; margin:0 auto; padding: 60px 20px;
+    width:100%;
+  }
+  .badge-new{
+    display:inline-block; background:var(--amarelo); color:var(--tinta);
+    font-family:'Bangers',cursive; font-size:1rem;
+    padding:6px 16px; border:3px solid var(--tinta); border-radius:20px;
+    transform:rotate(-4deg); margin-bottom:18px;
+  }
+  .hero h1{
+    color:var(--creme); font-size: clamp(2.6rem, 7vw, 5.2rem);
+    line-height:1; text-shadow: 4px 4px 0 var(--vermelho-escuro);
+    max-width:820px;
+  }
+  .hero h1 em{
+    font-style:normal; color:var(--amarelo);
+    text-shadow: 4px 4px 0 var(--tinta);
+  }
+  .hero p{
+    color:var(--creme); font-size:1.2rem; font-weight:500;
+    max-width:520px; margin-top:18px; opacity:.95;
+  }
+  .hero-ctas{
+    display:flex; flex-wrap:wrap; gap:16px; margin-top:32px;
+  }
+  .btn-primary{
+    background:var(--amarelo); color:var(--tinta);
+    font-family:'Bangers',cursive; font-size:1.3rem; letter-spacing:1px;
+    padding:16px 34px; border:4px solid var(--tinta); border-radius:14px;
+    box-shadow:6px 6px 0 var(--tinta);
+    transition: transform .15s;
+  }
+  .btn-primary:hover{transform:translate(-3px,-3px); box-shadow:9px 9px 0 var(--tinta);}
+  .btn-ghost{
+    background:transparent; color:var(--creme);
+    font-weight:700; padding:16px 26px; border:3px solid var(--creme); border-radius:14px;
+  }
+
+  /* ---------- SECTION GENERIC ---------- */
+  .container{max-width:1180px; margin:0 auto; padding: 90px 20px;}
+  .eyebrow{
+    display:inline-block; font-family:'Bangers',cursive; color:var(--vermelho);
+    font-size:1.1rem; border:3px solid var(--vermelho); border-radius:20px;
+    padding:4px 16px; margin-bottom:14px; transform:rotate(-2deg);
+  }
+  .section-title{
+    font-size: clamp(2rem, 4.5vw, 3.2rem); color:var(--azul); max-width:640px;
+  }
+  .section-sub{
+    font-size:1.05rem; color:#444; max-width:600px; margin-top:14px; font-weight:500;
+  }
+
+  /* ---------- DIFERENCIAIS (comic panels) ---------- */
+  .diferenciais-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(230px,1fr));
+    gap:34px; margin-top:56px;
+  }
+  .card-panel{
+    background:var(--creme); padding:26px 22px;
+    border:4px solid var(--tinta); box-shadow:7px 7px 0 var(--vermelho);
+    transition: transform .2s;
+  }
+  .card-panel:nth-child(2n){box-shadow:7px 7px 0 var(--amarelo); transform:rotate(1deg);}
+  .card-panel:nth-child(3n){transform:rotate(-1deg);}
+  .card-panel:hover{transform:translateY(-6px) rotate(0deg);}
+  .card-panel .icon{font-size:2.4rem; margin-bottom:12px; display:block;}
+  .card-panel h3{font-family:'Baloo 2',sans-serif; font-weight:800; font-size:1.15rem; color:var(--azul); margin-bottom:8px;}
+  .card-panel p{font-size:0.95rem; color:#555; font-weight:500;}
+
+  /* ---------- SERVIÇOS ---------- */
+  .servicos{background:var(--azul); color:var(--creme); position:relative;}
+  .servicos .eyebrow{color:var(--amarelo); border-color:var(--amarelo);}
+  .servicos .section-title{color:var(--creme);}
+  .servicos .section-sub{color:#c9d2e8;}
+  .servicos-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+    gap:24px; margin-top:50px;
+  }
+  .servico-item{
+    background:rgba(255,255,255,0.06);
+    border:3px solid var(--amarelo); border-radius:10px;
+    padding:22px 20px; position:relative;
+  }
+  .servico-item h4{font-family:'Baloo 2',sans-serif; font-weight:700; font-size:1.1rem; margin-bottom:6px;}
+  .servico-item span.tag{
+    position:absolute; top:-14px; right:14px;
+    background:var(--verde); color:var(--creme); font-size:0.72rem; font-weight:800;
+    padding:4px 10px; border-radius:12px; border:2px solid var(--tinta);
+  }
+  .servico-item p{font-size:0.9rem; color:#cdd5ea; font-weight:500;}
+
+  /* ---------- GALERIA ---------- */
+  .galeria-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:26px; margin-top:56px;
+  }
+  .galeria-grid figure{
+    border:4px solid var(--tinta); overflow:hidden;
+    box-shadow:6px 6px 0 var(--tinta);
+  }
+  .galeria-grid figure:nth-child(odd){transform:rotate(-1.5deg);}
+  .galeria-grid figure:nth-child(even){transform:rotate(1.5deg);}
+  .galeria-grid img{height:230px; width:100%; object-fit:cover;}
+
+  /* ---------- HORÁRIOS + LOCALIZAÇÃO ---------- */
+  .info-section{background:var(--amarelo); position:relative;}
+  .info-grid{
+    display:grid; grid-template-columns: 1fr 1.2fr; gap:50px; margin-top:50px; align-items:stretch;
+  }
+  .horarios-panel{
+    background:var(--creme); border:4px solid var(--tinta); box-shadow:8px 8px 0 var(--tinta);
+    padding:32px 28px;
+  }
+  .horarios-panel h3{font-family:'Bangers',cursive; color:var(--vermelho); font-size:1.6rem; margin-bottom:20px;}
+  .horarios-panel ul{list-style:none;}
+  .horarios-panel li{
+    display:flex; justify-content:space-between; padding:12px 0;
+    border-bottom:2px dashed #ccc; font-weight:600;
+  }
+  .horarios-panel li:last-child{border-bottom:none;}
+  .horarios-panel li b{color:var(--azul);}
+  .mapa-panel{
+    border:4px solid var(--tinta); box-shadow:8px 8px 0 var(--tinta); overflow:hidden;
+    min-height:320px;
+  }
+  .mapa-panel iframe{width:100%; height:100%; min-height:320px; border:0;}
+
+  /* ---------- CTA FINAL ---------- */
+  .cta-final{
+    background: var(--vermelho); color:var(--creme); text-align:center;
+    position:relative; overflow:hidden;
+  }
+  .cta-final .container{padding-top:80px; padding-bottom:90px;}
+  .cta-final h2{font-size:clamp(2rem,5vw,3.4rem); margin-bottom:18px;}
+  .cta-final p{font-size:1.1rem; max-width:520px; margin:0 auto 32px; font-weight:500;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--tinta); color:#ddd; padding:50px 20px 26px;}
+  .footer-grid{
+    max-width:1180px; margin:0 auto; display:grid;
+    grid-template-columns:1.3fr 1fr 1fr; gap:40px;
+  }
+  footer h4{font-family:'Bangers',cursive; color:var(--amarelo); font-size:1.2rem; margin-bottom:14px;}
+  footer p, footer a{font-size:0.92rem; color:#bbb; line-height:1.9;}
+  footer a:hover{color:var(--amarelo);}
+  .footer-bottom{
+    text-align:center; margin-top:40px; padding-top:22px; border-top:1px solid #333;
+    font-size:0.82rem; color:#777;
+  }
+
+  /* ---------- WHATSAPP FLOAT ---------- */
+  .whats-float{
+    position:fixed; bottom:22px; right:22px; z-index:60;
+    background:var(--verde); color:var(--creme); border:3px solid var(--tinta);
+    border-radius:50%; width:62px; height:62px; display:flex; align-items:center; justify-content:center;
+    font-size:1.6rem; box-shadow:4px 4px 0 var(--tinta);
+    transition: transform .15s;
+  }
+  .whats-float:hover{transform:scale(1.08);}
+
+  @media (max-width: 860px){
+    nav ul, .nav-toggle{}
+    nav{display:none;}
+    .info-grid{grid-template-columns:1fr;}
+    .galeria-grid{grid-template-columns:repeat(2,1fr);}
+    .footer-grid{grid-template-columns:1fr; text-align:center;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none!important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="#topo" class="logo">Kids<span>Barber</span></a>
+    <nav>
+      <ul>
+        <li><a href="#diferenciais">Diferenciais</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#galeria">Galeria</a></li>
+        <li><a href="#local">Horários & Local</a></li>
+      </ul>
+    </nav>
+    <a class="btn-zap" href="https://wa.me/5511994249833" target="_blank" rel="noopener">Agendar no WhatsApp</a>
+  </div>
+</header>
+
+<section class="hero" id="topo">
+  <div class="hero-inner">
+    <span class="badge-new">★ 4,9 de avaliação dos pais ★</span>
+    <h1>O corte que transforma seu filho em <em>super-herói</em></h1>
+    <p>Barbearia infantil em Moema com cadeiras temáticas, TV, jogos e uma equipe treinada pra deixar a hora do corte divertida — do jeito que criança gosta.</p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="https://wa.me/5511994249833" target="_blank" rel="noopener">Agendar horário</a>
+      <a class="btn-ghost" href="#galeria">Ver o espaço</a>
+    </div>
+  </div>
+</section>
+
+<section class="container" id="diferenciais">
+  <span class="eyebrow">Por que Kids Barber</span>
+  <h2 class="section-title">Um universo de heróis feito para o primeiro corte</h2>
+  <p class="section-sub">Do bebê ao pré-adolescente, cada detalhe do espaço foi pensado para que a criança se divirta — e o pai ou a mãe saia com uma foto de lembrança.</p>
+
+  <div class="diferenciais-grid">
+    <div class="card-panel">
+      <span class="icon">🚗</span>
+      <h3>Cadeiras temáticas</h3>
+      <p>Carrinho de corrida, aviãozinho e muito mais — a criança escolhe onde quer "voar" durante o corte.</p>
+    </div>
+    <div class="card-panel">
+      <span class="icon">📺</span>
+      <h3>Telas e joguinhos</h3>
+      <p>Desenhos e jogos em cada estação para distrair e deixar tudo mais tranquilo, sem choro.</p>
+    </div>
+    <div class="card-panel">
+      <span class="icon">🦸</span>
+      <h3>Ambiente super-herói</h3>
+      <p>Decoração e clima de quadrinho do chão ao teto — a criança entra num set de filme.</p>
+    </div>
+    <div class="card-panel">
+      <span class="icon">💛</span>
+      <h3>Equipe paciente</h3>
+      <p>Profissionais treinados para lidar com medo de tesoura, inquietação e primeira vez na cadeira.</p>
+    </div>
+  </div>
+</section>
+
+<section class="servicos" id="servicos">
+  <div class="container">
+    <span class="eyebrow">Serviços</span>
+    <h2 class="section-title">Do primeiro cabelo aos 12 anos</h2>
+    <p class="section-sub">Preços sob consulta — fale com a gente pelo WhatsApp para valores e disponibilidade.</p>
+
+    <div class="servicos-grid">
+      <div class="servico-item">
+        <span class="tag">Especial</span>
+        <h4>1º Corte</h4>
+        <p>O primeiro corte do bebê, com direito a foto de lembrança.</p>
+      </div>
+      <div class="servico-item">
+        <h4>Corte Infantil (até 12 anos)</h4>
+        <p>Corte completo com toda a paciência que a idade pede.</p>
+      </div>
+      <div class="servico-item">
+        <h4>Corte Adolescente (13 a 17 anos)</h4>
+        <p>Estilo e alinhamento para quem já quer um visual mais grande.</p>
+      </div>
+      <div class="servico-item">
+        <h4>Franja e Alinhamento</h4>
+        <p>Retoques rápidos para manter o corte em dia entre uma visita e outra.</p>
+      </div>
+      <div class="servico-item">
+        <h4>Penteados e Maquiagem Infantil</h4>
+        <p>Para festas, ensaios e ocasiões especiais.</p>
+      </div>
+      <div class="servico-item">
+        <h4>Barba</h4>
+        <p>Atendimento também para os pais que quiserem aproveitar a visita.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container" id="galeria">
+  <span class="eyebrow">Galeria</span>
+  <h2 class="section-title">Um pedacinho do nosso espaço</h2>
+  <div class="galeria-grid">
+    <figure><img src="images/fachada.jpg" alt="Fachada da Kids Barber"></figure>
+    <figure><img src="images/salao.jpg" alt="Salão temático com carrinhos e telas"></figure>
+    <figure><img src="images/corte.jpg" alt="Criança sendo atendida na cadeira temática"></figure>
+    <figure><img src="images/lavatorio.jpg" alt="Área de lavagem decorada com quadrinhos"></figure>
+  </div>
+</section>
+
+<section class="info-section" id="local">
+  <div class="container">
+    <span class="eyebrow">Horários & Localização</span>
+    <h2 class="section-title">Venha nos visitar</h2>
+    <div class="info-grid">
+      <div class="horarios-panel">
+        <h3>Horário de funcionamento</h3>
+        <ul>
+          <li>Segunda a sexta <b>10h às 19h</b></li>
+          <li>Sábado <b>09h às 18h</b></li>
+          <li>Domingo <b>Fechado</b></li>
+          <li>Feriados <b>10h às 17h</b></li>
+        </ul>
+      </div>
+      <div class="mapa-panel">
+        <iframe src="https://www.google.com/maps?q=Rua+Can%C3%A1rio+440+Moema+S%C3%A3o+Paulo&output=embed" loading="lazy" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="halftone" style="position:absolute; inset:0; opacity:.15;"></div>
+  <div class="container">
+    <h2>Bora marcar o corte de herói?</h2>
+    <p>Chame a gente no WhatsApp e garanta o horário do seu pequeno.</p>
+    <a class="btn-primary" href="https://wa.me/5511994249833" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h4>Kids Barber</h4>
+      <p>Barbearia infantil em Moema, São Paulo.<br>Especialista em cabelos de meninas e meninos de 0 a 12 anos.</p>
+    </div>
+    <div>
+      <h4>Contato</h4>
+      <p><a href="https://wa.me/5511994249833" target="_blank" rel="noopener">(11) 99424-9833</a></p>
+      <p><a href="https://instagram.com/kids.barber.brasil" target="_blank" rel="noopener">@kids.barber.brasil</a></p>
+    </div>
+    <div>
+      <h4>Endereço</h4>
+      <p>Rua Canário, 440<br>Moema, São Paulo - SP<br>04851-440</p>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Kids Barber. Todos os direitos reservados.</div>
+</footer>
+
+<a class="whats-float" href="https://wa.me/5511994249833" target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">💬</a>
+
+</body>
+</html>
